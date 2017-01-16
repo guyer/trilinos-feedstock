@@ -1,0 +1,59 @@
+{% set name = "trilinos" %}
+{% set version = "12.10.1" %}
+{% set md5 = "1e14df93afaddb12cf840da56c5132ce" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}-Source.tar.bz2
+  url: https://trilinos.org/oldsite/download/files/{{ name }}-{{ version }}-Source.tar.bz2
+  md5: {{ md5 }}
+
+build:
+  number:
+   0
+
+requirements:
+  build:
+    - python
+    - numpy x.x
+    - nomkl
+    - swig ==3.0.10
+    - cmake
+    - mpich
+    - openblas
+    - boost
+    - toolchain
+  run:
+    - python
+    - numpy x.x
+    - nomkl
+    - mpich
+    - openblas
+
+test:
+  imports:
+    - PyTrilinos
+    - PyTrilinos._Teuchos
+    - PyTrilinos.ML
+
+about:
+  home: https://trilinos.org/
+  license: Sandia LGPL-compatible and BSD-compatible SNAFU
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
+  summary: Framework for multi-physics engineering and scientific problems
+  description: |
+    The Trilinos Project is an effort to develop algorithms and enabling
+    technologies within an object-oriented software framework for the
+    solution of large-scale, complex multi-physics engineering and
+    scientific problems. A unique design feature of Trilinos is its focus
+    on packages.
+  doc_url: https://trilinos.org/about/documentation/
+  dev_url: https://github.com/trilinos/Trilinos
+
+extra:
+  recipe-maintainers:
+    - guyer
+
