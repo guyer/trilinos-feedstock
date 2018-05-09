@@ -8,7 +8,7 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}-Source.tar.bz2
-  url: https://trilinos.org/oldsite/download/files/{{ name }}-{{ version }}-Source.tar.bz2
+  url: http://trilinos.csbsju.edu/download/files/{{ name }}-{{ version }}-Source.tar.bz2
   md5: {{ md5 }}
 
 build:
