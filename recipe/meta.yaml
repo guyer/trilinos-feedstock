@@ -57,7 +57,7 @@ test:
 about:
   home: https://trilinos.org/
   license: Sandia LGPL-compatible and BSD-compatible SNAFU
-  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE.txt'
   summary: Framework for multi-physics engineering and scientific problems
   description: |
     The Trilinos Project is an effort to develop algorithms and enabling
