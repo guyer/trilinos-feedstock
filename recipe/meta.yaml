@@ -1,6 +1,7 @@
 {% set name = "trilinos" %}
 {% set version = "12.10.1" %}
-{% set md5 = "1e14df93afaddb12cf840da56c5132ce" %}
+{% set sha256 = "ea8ff573bb1f452f2585950cdabe7e2c84cb35013844c58dc878c66bd4245e06" %}
+{% set mpi = 'mpich 3.2.*' %}
 
 package:
   name: {{ name|lower }}
@@ -8,33 +9,50 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}-Source.tar.bz2
-  url: http://trilinos.csbsju.edu/download/files/{{ name }}-{{ version }}-Source.tar.bz2
-  md5: {{ md5 }}
+  url: http://trilinos.csbsju.edu/download/files/{{ name }}-{{ version }}-Source.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - 12.10-fixes.patch
 
 build:
-  number: 1
+  number: 2
+  skip: true  # [win or py3k]
 
 requirements:
   build:
     - python
     - numpy x.x
     - swig ==3.0.10
-    - cmake
-    - mpich
-    - openblas
-    - boost
+    - cmake 3.9.6
+    - {{ mpi }}
     - toolchain
+    - doxygen
+    - mpi4py
+    
   run:
     - python
     - numpy x.x
-    - mpich
-    - openblas
+    - {{ mpi }}
+    - mpi4py
 
 test:
+  requires:
+    - cmake 3.9.6
+    - mpi4py
   imports:
-    - PyTrilinos
-    - PyTrilinos._Teuchos
-    - PyTrilinos.ML
+  - PyTrilinos.Teuchos
+  - PyTrilinos.Epetra
+  - PyTrilinos.TriUtils
+  - PyTrilinos.Tpetra
+  - PyTrilinos.EpetraExt
+  - PyTrilinos.Domi
+  - PyTrilinos.AztecOO
+  - PyTrilinos.Galeri
+  - PyTrilinos.Amesos
+  - PyTrilinos.IFPACK
+  - PyTrilinos.Komplex
+  - PyTrilinos.ML
+  - PyTrilinos.Anasazi
 
 about:
   home: https://trilinos.org/
