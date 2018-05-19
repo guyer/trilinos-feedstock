@@ -4,7 +4,7 @@
 {% set mpi = 'mpich 3.2.*' %}
 
 package:
-  name: {{ name|lower }}
+  name: mypy{{ name|lower }}
   version: {{ version }}
 
 source:
