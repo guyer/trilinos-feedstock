@@ -4,7 +4,7 @@
 {% set mpi = 'mpich 3.2.*' %}
 
 package:
-  name: mypy{{ name|lower }}
+  name: fipy{{ name|lower }}
   version: {{ version }}
 
 source:
@@ -15,7 +15,7 @@ source:
     - 12.10-fixes.patch
 
 build:
-  number: 2
+  number: 1
   skip: true  # [win or py3k]
 
 requirements:
